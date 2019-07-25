@@ -18,7 +18,7 @@ package graphics4
 // }
 import "C"
 import "unsafe"
-import matrix "github.com/darmie/koan/Kinc/Sources/kinc/math"
+import matrix "github.com/darmie/go-kinc/Sources/kinc/math"
 
 const (
 	Repeat TextureAddressing = 0

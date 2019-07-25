@@ -18,7 +18,7 @@ package graphics4
 import "C"
 import "unsafe"
 
-import kinc "github.com/darmie/koan/Kinc/Sources/kinc"
+import kinc "github.com/darmie/go-kinc/Sources/kinc"
 
 type Texture struct {
 	TexWidth  int
