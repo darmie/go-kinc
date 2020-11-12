@@ -33,8 +33,8 @@ func main() {
 	win = kinc.Init("Shader", 1024, 768, nil, nil)
 
 	kinc.SetUpdateCallback(update)
-	vertexShader := g4.InitShader("shader.vert", g4.Vertex)
-	fragmentShader := g4.InitShader("shader.frag", g4.Fragment)
+	vertexShader := g4.InitShader("Tests/Empty/Sources/shader.frag.glsl", g4.Vertex)
+	fragmentShader := g4.InitShader("Tests/Empty/Sources/shader.frag.glsl", g4.Fragment)
 
 	structure := g4.InitVertexStructure()
 	structure.Add("pos", g4.Float3)
