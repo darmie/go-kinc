@@ -2,8 +2,8 @@
 
 package kinc
 
-// #cgo CFLAGS: -I${SRCDIR}\..\..\Backends\Graphics5\Vulkan\Sources -I${SRCDIR}\..\..\Backends\Graphics4\G4onG5\Sources
-// #cgo CPPFLAGS: -I${SRCDIR}\..\..\Backends\Graphics5\Vulkan\Sources -I${SRCDIR}\..\..\Backends\Graphics4\G4onG5\Sources
+// #cgo CFLAGS: -I${SRCDIR}\..\Backends\Graphics5\Vulkan\Sources -I${SRCDIR}\..\Backends\Graphics4\G4onG5\Sources
+// #cgo CPPFLAGS: -I${SRCDIR}\..\Backends\Graphics5\Vulkan\Sources -I${SRCDIR}\..\Backends\Graphics4\G4onG5\Sources
 // #cgo CPPFLAGS: -I "${VULKAN_SDK}\Include"
 // #cgo CPPFLAGS: -DKORE_G4=1 -DKORE_G5=1 -DKORE_G4ONG5
 // #cgo CFLAGS: -DKORE_G4=1 -DKORE_G5=1 -DKORE_G4ONG5

@@ -3,8 +3,8 @@ package main
 import (
 	"fmt"
 
-	"github.com/darmie/go-kinc/Sources/kinc"
-	g4 "github.com/darmie/go-kinc/Sources/kinc/graphics4"
+	"github.com/darmie/go-kinc/kinc"
+	"github.com/darmie/go-kinc/kinc/g4"
 )
 
 var (

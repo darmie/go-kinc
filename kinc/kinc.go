@@ -1,11 +1,6 @@
 package kinc
 
-// #cgo CFLAGS: -I${SRCDIR}/../../Sources
-// #cgo CPPFLAGS: -I${SRCDIR}/../../Sources
 // #include "kinc_go.h"
-// #include "window.c"
-// #include "image.c"
-// #include "system.c"
 import "C"
 import (
 	"bufio"
@@ -249,7 +244,7 @@ var (
 func Init(name string, width int, height int, windowOptions *WindowOptions, frame *FrameBufferOptions) *Window {
 	_name := C.CString(name)
 	win := C.kinc_init(_name, C.int(width), C.int(height), windowOptionsToC(windowOptions), fbOptionsToC(frame))
-	C.free(_name)
+
 	return &Window{
 		Index: int(C.int(win)),
 	}

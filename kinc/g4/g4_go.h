@@ -1,16 +1,16 @@
 #pragma once
 
-#include "pch.h"
-#include "graphics.h"
-#include "indexbuffer.h"
-#include "pipeline.h"
-#include "rendertarget.h"
-#include "shader.h"
-#include "texture.h"
-#include "texturearray.h"
-#include "textureunit.h"
-#include "vertexbuffer.h"
-#include "vertexstructure.h"
+#include "../../Sources/kinc/graphics4/pch.h"
+#include "../../Sources/kinc/graphics4/graphics.h"
+#include "../../Sources/kinc/graphics4/indexbuffer.h"
+#include "../../Sources/kinc/graphics4/pipeline.h"
+#include "../../Sources/kinc/graphics4/rendertarget.h"
+#include "../../Sources/kinc/graphics4/shader.h"
+#include "../../Sources/kinc/graphics4/texture.h"
+#include "../../Sources/kinc/graphics4/texturearray.h"
+#include "../../Sources/kinc/graphics4/textureunit.h"
+#include "../../Sources/kinc/graphics4/vertexbuffer.h"
+#include "../../Sources/kinc/graphics4/vertexstructure.h"
 
 static kinc_g4_shader_t initShader(const char *source, kinc_g4_shader_type_t type) {
 		kinc_g4_shader_t shader;

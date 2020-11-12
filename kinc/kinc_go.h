@@ -1,10 +1,10 @@
 #pragma once
 
-#include "pch.h"
-#include "window.h"
-#include "system.h"
-#include "image.h"
-#include "display.h"
+#include "../Sources/kinc/pch.h"
+#include "../Sources/kinc/window.h"
+#include "../Sources/kinc/system.h"
+#include "../Sources/kinc/image.h"
+#include "../Sources/kinc/display.h"
 
 #ifdef __cplusplus
 extern "C" {

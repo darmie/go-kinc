@@ -1,4 +1,4 @@
-package math
+package kinc
 
 type Vector2 struct {
 	X float32

@@ -1,10 +1,6 @@
-package math
+package kinc
 
-// +build cgo
-
-// #cgo CFLAGS: -I${SRCDIR}/../../../Sources
-// #include "pch.h"
-// #include "matrix.h"
+// #include "../Sources/kinc/math/matrix.h"
 import "C"
 import "unsafe"
 

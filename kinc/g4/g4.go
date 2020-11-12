@@ -1,19 +1,11 @@
-package graphics4
+package g4
 
-// #cgo CPPFLAGS: -I${SRCDIR}/../../../Sources/
-// #cgo CPPFLAGS: -I${SRCDIR}/../../../Backends/Graphics4/OpenGL/Sources/
-// #cgo CPPFLAGS: -I${SRCDIR}/../../../Backends/System/macOS/Sources/
-// #cgo CPPFLAGS: -I${SRCDIR}/../../../Backends/System/Apple/Sources/
-// #cgo CPPFLAGS: -I${SRCDIR}/../../../Backends/System/POSIX/Sources/
-// #cgo CPPFLAGS: -DKORE_G4=1 -DKORE_OPENGL=1 -DKORE_MACOS=1 -DKORE_POSIX=1
-// #cgo LDFLAGS: -framework Foundation -framework AVFoundation -framework IOKit -framework Cocoa -framework AppKit -framework CoreAudio -framework CoreMedia -framework CoreVideo -framework OpenGL
 // #include "g4_go.h"
 import "C"
 import (
 	"unsafe"
 
-	kinc "github.com/darmie/go-kinc/Sources/kinc"
-	matrix "github.com/darmie/go-kinc/Sources/kinc/math"
+	"github.com/darmie/go-kinc/kinc"
 )
 
 const (
@@ -192,11 +184,11 @@ func SetBool(location ConstantLocation, value bool) {
 	C.kinc_g4_set_bool(location, C.toBool(_v))
 }
 
-func SetMatrix3x3(location ConstantLocation, mat matrix.Matrix3x3) {
+func SetMatrix3x3(location ConstantLocation, mat Matrix3x3) {
 	C.kinc_g4_set_matrix3(location, (*C.kinc_matrix3x3_t)(unsafe.Pointer(mat.CMatrix)))
 }
 
-func SetMatrix4x4(location ConstantLocation, mat matrix.Matrix4x4) {
+func SetMatrix4x4(location ConstantLocation, mat Matrix4x4) {
 	C.kinc_g4_set_matrix4(location, (*C.kinc_matrix4x4_t)(unsafe.Pointer(mat.CMatrix)))
 }
 
@@ -281,23 +273,23 @@ func SetOcclusionQuery(query []uint) {
 }
 
 func DeleteOcclusionQuery(query uint) {
-	C.kinc_g4_delete_occlusion_query(C.unit(query))
+	C.kinc_g4_delete_occlusion_query(C.uint(query))
 }
 
 func StartOcclusionQuery(query uint) {
-	C.kinc_g4_start_occlusion_query(C.unit(query))
+	C.kinc_g4_start_occlusion_query(C.uint(query))
 }
 
 func EndOcclusionQuery(query uint) {
-	C.kinc_g4_end_occlusion_query(C.unit(query))
+	C.kinc_g4_end_occlusion_query(C.uint(query))
 }
 
 func AreQueryResultsAvailable(query uint) bool {
-	return C.fromBool(C.kinc_g4_are_query_results_available(C.unit(query))) == 1
+	return C.fromBool(C.kinc_g4_are_query_results_available(C.uint(query))) == 1
 }
 
 func GetQueryResults(query uint, pixelCount []uint) {
-	C.kinc_g4_get_query_results(C.unit(query), *C.uint(&pixelCount[0]))
+	C.kinc_g4_get_query_results(C.uint(query), *C.uint(&pixelCount[0]))
 }
 
 func SetTextureArray(unit TextureUnit, textureArray *TextureArray) {
@@ -713,7 +705,7 @@ type TextureArray struct {
 	Count         int
 }
 
-func InitTexureArray(image *kinc.Image, count int) *TextureArray {
+func InitTexureArray(image *Image, count int) *TextureArray {
 	_ctextureArray := C.kinc_g4_texture_array_t{}
 	_textureArray := TextureArray{
 		CTextureArray: (*C.kinc_g4_texture_array_t)(unsafe.Pointer(&_ctextureArray)),
@@ -748,7 +740,7 @@ func Init3DTexture(width int, height int, format kinc.ImageFormat) *Texture {
 		CTexture: (*C.kinc_g4_texture_t)(unsafe.Pointer(&_cTexure)),
 		Format:   format,
 	}
-	C.kinc_g4_texture3d_init(texture.CTexture, C.int(width), C.int(height), C.int(format))
+	C.kinc_g4_texture_init3d(texture.CTexture, C.int(width), C.int(height), C.int(format))
 
 	texture.TexWidth = texture.CTexture.tex_width
 	texture.TexHeight = texture.CTexture.tex_height
@@ -757,7 +749,7 @@ func Init3DTexture(width int, height int, format kinc.ImageFormat) *Texture {
 	return texture
 }
 
-func InitFromImage(image *kinc.Image) *Texture {
+func InitFromImage(image *Image) *Texture {
 	_cTexure := C.kinc_g4_texture_t{}
 	texture := &Texture{
 		CTexture: (*C.kinc_g4_texture_t)(unsafe.Pointer(&_cTexure)),
@@ -771,7 +763,7 @@ func InitFromImage(image *kinc.Image) *Texture {
 	return texture
 }
 
-func InitFromImage3D(image *kinc.Image) *Texture {
+func InitFromImage3D(image *Image) *Texture {
 	_cTexure := C.kinc_g4_texture_t{}
 	texture := &Texture{
 		CTexture: (*C.kinc_g4_texture_t)(unsafe.Pointer(&_cTexure)),
@@ -827,7 +819,7 @@ func (t *Texture) GenerateMipmaps(levels int) {
 	C.kinc_g4_texture_generate_mipmaps((*C.kinc_g4_texture_t)(unsafe.Pointer(t.CTexture)), C.int(levels))
 }
 
-func (t *Texture) SetMipmap(mipmap *kinc.Image, level int) {
+func (t *Texture) SetMipmap(mipmap *Image, level int) {
 	C.kinc_g4_texture_set_mipmap((*C.kinc_g4_texture_t)(unsafe.Pointer(t.CTexture)), (*C.kinc_image_t)(unsafe.Pointer(mipmap.CImage)), C.int(level))
 }
 

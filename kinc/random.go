@@ -1,8 +1,6 @@
-package math
+package kinc
 
-// +build cgo
-
-// #include "random.h"
+// #include "../Sources/kinc/math/random.h"
 import "C"
 
 func InitRandom(seed int) {
