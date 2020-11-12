@@ -23,7 +23,7 @@ uint8_t buffer[4096 * 2 * 4096 * 2 * 4];
 
 //STBI_MALLOC, STBI_REALLOC, and STBI_FREE
 
-static _Bool endsWith(const char *str, const char *suffix) {
+static bool endsWith(const char *str, const char *suffix) {
 	if (str == NULL || suffix == NULL) return 0;
 	size_t lenstr = strlen(str);
 	size_t lensuffix = strlen(suffix);
@@ -302,7 +302,7 @@ size_t kinc_image_init_from_file(kinc_image_t *image, void *memory, const char *
 	kinc_file_reader_t reader;
 	kinc_file_reader_open(&reader, filename, KINC_FILE_TYPE_ASSET);
 	int dataSize;
-	loadImage(&reader, filename, memory, &dataSize, &image->width, &image->height, &image->compression, &image->format, &image->internal_format);
+	loadImage(&reader, filename, (uint8_t*)memory, &dataSize, &image->width, &image->height, &image->compression, &image->format, &image->internal_format);
 	kinc_file_reader_close(&reader);
 	image->data = memory;
 	return dataSize;

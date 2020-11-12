@@ -1,13 +1,11 @@
 package kinc
 
+// #cgo CFLAGS: -I${SRCDIR}/../../Sources
 // #cgo CPPFLAGS: -I${SRCDIR}/../../Sources
-// #cgo CPPFLAGS: -I${SRCDIR}/../../Backends/Graphics4/OpenGL/Sources
-// #cgo CPPFLAGS: -I${SRCDIR}/../../Backends/System/Apple/Sources
-// #cgo CFLAGS: -I${SRCDIR}/../../Backends/System/Apple/Sources
-// #cgo CPPFLAGS: -I${SRCDIR}/../../Backends/System/macOS/Sources
-// #cgo CPPFLAGS: -DKORE_G4=1 -DKORE_OPENGL=1 -DKORE_MACOS=1 -DKORE_POSIX=1 -O2 -g
-// #cgo LDFLAGS: -framework Foundation -framework AVFoundation -framework IOKit -framework Cocoa -framework AppKit -framework CoreAudio -framework CoreMedia -framework CoreVideo
 // #include "kinc_go.h"
+// #include "window.c"
+// #include "image.c"
+// #include "system.c"
 import "C"
 import (
 	"bufio"
@@ -249,7 +247,9 @@ var (
 )
 
 func Init(name string, width int, height int, windowOptions *WindowOptions, frame *FrameBufferOptions) *Window {
-	win := C.kinc_init(C.CString(name), C.int(width), C.int(height), windowOptionsToC(windowOptions), fbOptionsToC(frame))
+	_name := C.CString(name)
+	win := C.kinc_init(_name, C.int(width), C.int(height), windowOptionsToC(windowOptions), fbOptionsToC(frame))
+	C.free(_name)
 	return &Window{
 		Index: int(C.int(win)),
 	}
