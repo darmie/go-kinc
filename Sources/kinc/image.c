@@ -23,7 +23,7 @@ uint8_t buffer[4096 * 2 * 4096 * 2 * 4];
 
 //STBI_MALLOC, STBI_REALLOC, and STBI_FREE
 
-static bool endsWith(const char *str, const char *suffix) {
+static _Bool endsWith(const char *str, const char *suffix) {
 	if (str == NULL || suffix == NULL) return 0;
 	size_t lenstr = strlen(str);
 	size_t lensuffix = strlen(suffix);
